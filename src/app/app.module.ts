@@ -12,7 +12,7 @@ import {HomeComponent} from './home/home.component';
   declarations: [AppComponent, HomeComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [QRScanner, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [QRScanner,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
