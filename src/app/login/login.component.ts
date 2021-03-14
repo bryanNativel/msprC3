@@ -7,13 +7,13 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
+
+  constructor(private formControl: FormControl) { }
   form: FormControl;
-
-  constructor() { }
-
   ngOnInit() {}
 
   login() {
-
+  console.log(this.form)
   }
 }
