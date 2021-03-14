@@ -1,6 +1,7 @@
 export interface QrCode {
   id: string;
-  name: string;
+  brand: string;
   description: string;
-  date?: Date;
+  validUntil?: Date;
+  coupon:string;
 }

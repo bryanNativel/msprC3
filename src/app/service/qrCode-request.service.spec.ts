@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApiRequestService } from './api-request.service';
+import { QrCodeRequestService } from './qrCode-request.service';
 
-describe('ApiRequestService', () => {
-  let service: ApiRequestService;
+describe('QrCodeRequestService', () => {
+  let service: QrCodeRequestService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiRequestService);
+    service = TestBed.inject(QrCodeRequestService);
   });
 
   it('should be created', () => {
