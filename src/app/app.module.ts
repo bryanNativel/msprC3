@@ -11,11 +11,17 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import {LoginComponent} from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
+
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
+
 @NgModule({
   declarations: [AppComponent, DetailComponent, HomeComponent,LoginComponent],
   entryComponents: [],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,ReactiveFormsModule],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 
