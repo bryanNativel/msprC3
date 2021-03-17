@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
+import {User} from '../interface/user';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     const val = this.form.value
 
     if(val.email && val.password){
-      this.authService.login(val.email,val.password).subscribe(()=>{
+
+      this.authService.login(val).subscribe(()=>{
          console.log("connexion work")
           this.router.navigateByUrl('home');
         },

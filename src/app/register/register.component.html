@@ -1,3 +1,21 @@
-<p>
-  register works!
-</p>
+<form [formGroup]="form">
+  <fieldset>
+    <legend>Register</legend>
+    <div class="form-field">
+      <label>Nom:</label>
+      <input name="email" formControlName="email">
+    </div>
+    <div class="form-field">
+      <label>Email:</label>
+      <input name="email" formControlName="email">
+    </div>
+    <div class="form-field">
+      <label>Mot de passe:</label>
+      <input name="password" formControlName="password"
+             type="password">
+    </div>
+  </fieldset>
+  <div class="form-buttons">
+    <button class="button button-primary" (click)="register()">Valider</button>
+  </div>
+</form>

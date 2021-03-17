@@ -6,10 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HomeComponent} from './home/home.component';
 import {DetailComponent} from './detail/detail.component';
-import { HttpClientModule } from '@angular/common/http';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import {LoginComponent} from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {JwtInterceptorService} from './_helpers/jwt-interceptor.service';
 
 
 export function tokenGetter() {
@@ -20,7 +21,7 @@ export function tokenGetter() {
   declarations: [AppComponent, DetailComponent, HomeComponent,LoginComponent],
   entryComponents: [],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,ReactiveFormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,ReactiveFormsModule], 
   bootstrap: [AppComponent],
 })
 export class AppModule {}
