@@ -22,10 +22,6 @@ const routes: Routes = [
     path: 'login',component: LoginComponent
   },
   {
-    //Exemple de route Guard
-    //path:'home',component:home canActivate: [AuthGuardService]
-  },
-  {
     path:'register',component: RegisterComponent
   }
 ]

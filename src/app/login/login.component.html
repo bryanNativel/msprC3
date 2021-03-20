@@ -1,19 +1,10 @@
-<ion-content>
+<ion-content class="ion-padding">
   <form [formGroup]="form">
-    <fieldset>
-      <legend>Login</legend>
-      <div class="form-field">
-        <label>Email:</label>
-        <input name="email" formControlName="email">
-      </div>
-      <div class="form-field">
-        <label>Password:</label>
-        <input name="password" formControlName="password"
-               type="password">
-      </div>
-    </fieldset>
-    <div class="form-buttons">
-      <button class="button button-primary" (click)="login()">Login</button>
-    </div>
+      <ion-label>Email:</ion-label>
+      <ion-input name="email" formControlName="email"></ion-input>
+      <ion-label>Password:</ion-label>
+      <ion-input name="password" formControlName="password"
+             type="password"></ion-input>
+      <ion-button class="button button-primary" (click)="login()">Connexion</ion-button>
   </form>
-</ion-content>f
+</ion-content>

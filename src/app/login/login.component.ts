@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
   ngOnInit() {}
 
   login() {
@@ -32,7 +31,11 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(val).subscribe(()=>{
          console.log("connexion work")
-          this.router.navigateByUrl('home');
+          // this.router.navigateByUrl('home');
+        console.log(this.authService.getToken())
+        this.authService.logout();
+          console.log(this.authService.getToken())
+
         },
         (error)=>{
           console.log("error connexion");
