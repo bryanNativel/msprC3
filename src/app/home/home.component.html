@@ -12,9 +12,16 @@
     </ion-toolbar>
   </ion-header>
   <div *ngIf = "!showCamera" >
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab vertical="center" horizontal="center" slot="fixed">
       <ion-fab-button (click)="scanQrCode()">
         <ion-icon name="camera">Scan QrCode</ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <div *ngIf = "showCamera" >
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="closeCamera()">
+        <ion-icon  name="close-circle-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </div>

@@ -11,7 +11,8 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import {LoginComponent} from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {JwtInterceptorService} from './_helpers/jwt-interceptor.service';
+import { JwtInterceptorService } from './_helpers/jwt-interceptor.service';
+import {NavBarComponent} from './nav-bar/nav-bar.component';
 
 
 // export function tokenGetter() {
@@ -19,7 +20,7 @@ import {JwtInterceptorService} from './_helpers/jwt-interceptor.service';
 // }
 
 @NgModule({
-  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent],
+  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent,NavBarComponent],
   entryComponents: [],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner, {
     provide: HTTP_INTERCEPTORS,

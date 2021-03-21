@@ -10,6 +10,9 @@
     }
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 385c088 (First push and add feat toolbard and menu)
   "cordova": {},
   "server": {
     "url": "http://192.168.1.10:8100",
@@ -17,7 +20,10 @@
     "originalUrl": "http://192.168.1.10:8100",
     "originalCleartext": true
   }
+<<<<<<< HEAD
 =======
   "cordova": {}
 >>>>>>> 70aebba (capcitor json)
+=======
+>>>>>>> 385c088 (First push and add feat toolbard and menu)
 }

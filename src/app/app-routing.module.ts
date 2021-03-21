@@ -6,7 +6,6 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuardService} from './_helpers/auth-guard.service';
 import {RegisterComponent} from './register/register.component';
 
-
 const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'

@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   showCamera = false;
 
   ngOnInit() {
+    this.scanQrCode();
 
   }
   public scanQrCode(): void {
