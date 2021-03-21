@@ -9,6 +9,7 @@
       "launchShowDuration": 0
     }
   },
+<<<<<<< HEAD
   "cordova": {},
   "server": {
     "url": "http://192.168.1.10:8100",
@@ -16,4 +17,7 @@
     "originalUrl": "http://192.168.1.10:8100",
     "originalCleartext": true
   }
+=======
+  "cordova": {}
+>>>>>>> 4958d91 (change on line capacitor mineur changed)
 }
