@@ -1,0 +1,16 @@
+<ion-content fullscreen class="ion-align-items-center,ion-justify-content-center">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> <ion-label color="primary">{{ (qrCode$|async).brand}}</ion-label></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="ion-text-start">
+        <p>Date limite: {{ (qrCode$|async).validUntil|date}}.</p>
+      </div>
+      <div class="ion-text-start" >
+        <p>Description: {{ (qrCode$|async).description}}</p>
+      </div>
+    </ion-card-content>
+    <img src="{{ (qrCode$|async).coupon}}"/>
+  </ion-card>
+</ion-content>
