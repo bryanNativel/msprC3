@@ -6,7 +6,7 @@ import {DetailComponent} from './detail/detail.component';
 
 const routes: Routes = [
   {
-<<<<<<< HEAD
+
     path: '', redirectTo: 'home', pathMatch: 'full'
   },
   {
@@ -14,9 +14,6 @@ const routes: Routes = [
   },
   {
     path: 'detail/:id', component: DetailComponent
-=======
-    path: 'detail/:id',component:DetailComponent
->>>>>>> b132120 (fixed request edit)
 
   }
 ];
