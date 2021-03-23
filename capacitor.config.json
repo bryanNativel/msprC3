@@ -12,12 +12,8 @@
   "cordova": {},
   "server": {
     "url": "http://192.168.1.10:8100",
-<<<<<<< HEAD
     "cleartext": true,
     "originalUrl": "http://192.168.1.10:8100",
     "originalCleartext": true
-=======
-    "cleartext": true
->>>>>>> 748f940 (Remove package auth/jwt and import in app module.)
   }
 }

@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {User} from '../interface/user';
-import {Observable,throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 
 @Injectable({
@@ -22,17 +22,17 @@ export class AuthService {
   login(user: User) {
     return this.http.post<{ access_token: string }>('url', user).pipe(tap(res => {
       localStorage.setItem('access_token', res.access_token);
-    }),catchError(this.handleError));
+    }), catchError(this.handleError));
   }
 
   register(user: User) {
     return this.http.post<{ access_token: string }>('url', user).pipe(tap(res => {
       this.router.navigate(['login']);
-    }),catchError(this.handleError));
+    }), catchError(this.handleError));
   }
 
   logout() {
-    let checkRemouveToker = localStorage.removeItem('access_token');
+    const checkRemouveToker = localStorage.removeItem('access_token');
     if (checkRemouveToker == null) {
       this.router.navigate(['login']);
     }
@@ -41,14 +41,14 @@ export class AuthService {
   get loggedIn(): boolean {
     return localStorage.getItem('access_token') !== null;
   }
-  //GetProfilUser
+  // GetProfilUser
   getUserProfile(id): Observable<any> {
     return this.http.get('url/id', { headers: this.headers }).pipe(
       map((res: Response) => {
-        return res || {}
+        return res || {};
       }),
       catchError(this.handleError)
-    )
+    );
   }
   // Error
   handleError(error: HttpErrorResponse) {
