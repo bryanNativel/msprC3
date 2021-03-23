@@ -13,10 +13,10 @@ import {Observable} from 'rxjs';
 export class DetailComponent implements OnInit {
   private qrCode$: Observable<QrCode>;
 
-  constructor(private service: QrCodeRequestService, private route: ActivatedRoute) {}
+  constructor(private serviceRequest: QrCodeRequestService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.qrCode$ = this.service.getOne(id);
+    this.qrCode$ = this.serviceRequest.getOne(id);
   }
 }
