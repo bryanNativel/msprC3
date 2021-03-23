@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import {QrCodeRequestService} from '../service/qrCode-request.service';
-
 import {ActivatedRoute} from '@angular/router';
 import {QrCode} from '../interface/qr-code';
 import {Observable} from 'rxjs';
-import {ApiRequestService} from '../service/api-request.service';
+
 
 @Component({
   selector: 'app-detail',

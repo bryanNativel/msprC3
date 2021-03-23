@@ -14,15 +14,19 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {JwtInterceptorService} from './_helpers/jwt-interceptor.service';
 
 
-export function tokenGetter() {
-  return localStorage.getItem("access_token");
-}
+// export function tokenGetter() {
+//   return localStorage.getItem("access_token");
+// }
 
 @NgModule({
-  declarations: [AppComponent, DetailComponent, HomeComponent,LoginComponent],
+  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent],
   entryComponents: [],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,ReactiveFormsModule], 
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorService,
+    multi: true
+  }],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
