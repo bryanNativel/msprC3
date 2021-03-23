@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
+
 import {QrCodeRequestService} from '../service/qrCode-request.service';
->>>>>>> b132120 (fixed request edit)
+
 import {ActivatedRoute} from '@angular/router';
 import {QrCode} from '../interface/qr-code';
 import {Observable} from 'rxjs';
