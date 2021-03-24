@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
               scanSub.unsubscribe();
               this.showCamera = false;
             });
-             this.qrScanner.show().then(r => console.log(r));
+            this.qrScanner.show().then(r => console.log(r));
           } else if (status.denied) {
             console.log("camera permission was permanently denied,you must use QRScanner.openSettings() method to guide the user to the settings page");
           } else {

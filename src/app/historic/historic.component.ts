@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {QrCodeRequestService} from '../service/qrCode-request.service';
-import {Observable} from 'rxjs';
 import {QrCode} from '../interface/qr-code';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-historic',
@@ -12,11 +10,14 @@ import {map} from 'rxjs/operators';
 export class HistoricComponent implements OnInit {
 
   constructor(private serviceRequest: QrCodeRequestService) {}
-  historicQrCode: any;
+  historicQrCode: QrCode[];
   ngOnInit() {
-    // Recuperer id du user connecter dans le locale storage
-   this.historicQrCode = this.serviceRequest.getHistoric('1');
-   console.log(this.historicQrCode);
+
+    const qrcodeObject =  this.serviceRequest.getHistoric('1').subscribe( {
+      next: value => console.log(this.historicQrCode = value),
+      error: error => console.error(error),
+      complete: () => qrcodeObject.unsubscribe(),
+   });
   }
 
 }
