@@ -3,5 +3,5 @@ export interface QrCode {
   brand: string;
   description: string;
   validUntil?: Date;
-  coupon:string;
+  coupon: string;
 }

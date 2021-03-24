@@ -15,5 +15,4 @@ export class ApiRequestService {
   getOne(id: string): Observable<QrCode>{
     return this.httpClient.get<QrCode>(this.domainName + '/' + id);
   }
-
 }

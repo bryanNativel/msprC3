@@ -5,10 +5,12 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {AuthGuardService} from './_helpers/auth-guard.service';
 import {DetailComponent} from './detail/detail.component';
+import {HistoricComponent} from './historic/historic.component';
+
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: 'historic', pathMatch: 'full'
   },
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuardService]
@@ -21,6 +23,9 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'historic', component: HistoricComponent
   }
 ];
 

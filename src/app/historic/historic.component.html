@@ -1,0 +1,14 @@
+<ion-content>
+  <ion-item *ngFor="let qrCode of historicQrCode">
+    <ion-router-link href='detail/+{{qrCode.brand}}'>
+    <ion-avatar class="ion-" slot="start">
+      <img src="" alt="code barre">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{qrCode.brand}}</h2>
+      <h3>{{qrCode.validUntil}}</h3>
+      <p>{{qrCode.description}}</p>
+    </ion-label>
+    </ion-router-link>
+  </ion-item>
+</ion-content>
