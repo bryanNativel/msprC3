@@ -14,6 +14,7 @@ export class NavBarComponent implements OnInit {
 
   }
   pageName: string;
+
   ngOnInit() {
     this.router.events.subscribe((data) => {
       if (data instanceof RoutesRecognized) {

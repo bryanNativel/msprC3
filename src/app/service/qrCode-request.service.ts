@@ -16,7 +16,7 @@ export class QrCodeRequestService {
   getOne(id: string): Observable<QrCode>{
     return this.httpClient.get<QrCode>(this.apiUrl + '/qr-code/' +  id);
   }
-  getHistoric(userId: string): Observable<QrCode[]>{
+  getQrCodeHistoric(userId: string): Observable<QrCode[]>{
     // return of([{
     //   id: '1',
     //   brand: 'marque1',

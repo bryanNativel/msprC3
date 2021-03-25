@@ -10,10 +10,10 @@ import {QrCode} from '../interface/qr-code';
 export class HistoricComponent implements OnInit {
 
   constructor(private serviceRequest: QrCodeRequestService) {}
-  historicQrCode: QrCode[];
+  public historicQrCode: QrCode[];
   ngOnInit() {
 
-    const qrcodeObject =  this.serviceRequest.getHistoric('1').subscribe( {
+    const qrcodeObject =  this.serviceRequest.getQrCodeHistoric('1').subscribe( {
       next: value => console.log(this.historicQrCode = value),
       error: error => console.error(error),
       complete: () => qrcodeObject.unsubscribe(),

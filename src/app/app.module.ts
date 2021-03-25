@@ -15,12 +15,8 @@ import {HistoricComponent} from './historic/historic.component';
 import {LoginComponent} from './login/login.component';
 
 
-// export function tokenGetter() {
-//   return localStorage.getItem("access_token");
-// }
-
 @NgModule({
-  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent,NavBarComponent,HistoricComponent],
+  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent, NavBarComponent, HistoricComponent],
   entryComponents: [],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner, {
     provide: HTTP_INTERCEPTORS,
