@@ -10,7 +10,7 @@ import {HistoricComponent} from './historic/historic.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'historic', pathMatch: 'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuardService]
