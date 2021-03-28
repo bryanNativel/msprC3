@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { DetailComponent } from './detail.component';
+import {QrCode} from '../interface/qr-code';
+import {Observable} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
@@ -8,6 +11,17 @@ describe('DetailComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      providers: [{
+        provide: ActivatedRoute,
+        useValue: {
+          snapshot: {
+            params: {
+              id: 1,
+            },
+          },
+        },
+      },
+      ],
       declarations: [ DetailComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
@@ -17,7 +31,9 @@ describe('DetailComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('check if variable containing observable qrcode type', () => {
+    component.ngOnInit();
+    const result = component.qrCode$;
+    expect(result).toContain (new Observable<QrCode>());
   });
 });

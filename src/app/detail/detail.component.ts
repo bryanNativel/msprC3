@@ -13,10 +13,9 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  private qrCode$: Observable<QrCode>;
 
   constructor(private serviceRequest: QrCodeRequestService, private route: ActivatedRoute) {}
-
+  public qrCode$: Observable<QrCode>;
   ngOnInit() {
     const id = this.route.snapshot.params.id;
     this.qrCode$ = this.serviceRequest.getOne(id).pipe(catchError((err: HttpErrorResponse) => {
@@ -27,5 +26,6 @@ export class DetailComponent implements OnInit {
         return throwError(err)
       }
     }))
+   this.qrCode$ = this.serviceRequest.getOne(this.route.snapshot.params.id);
   }
 }
