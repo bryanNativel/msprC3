@@ -17,11 +17,4 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
-
-  it('check if login return true if that work', () => {
-    expect(component.login()).toBe (true);
-  });
-  it('check if login return false if dont work', () => {
-    expect(component.login()).toBe(false);
-  });
 });

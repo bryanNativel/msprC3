@@ -9,8 +9,4 @@ describe('ErrorInterceptorService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(ErrorInterceptorService);
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
 });

@@ -13,13 +13,14 @@ export class HistoricComponent implements OnInit {
   constructor(private serviceRequest: QrCodeRequestService) {}
   public historicQrCode: QrCode[];
   ngOnInit() {
+
+    const qrcodeObject =  this.serviceRequest.getQrCodeHistoric('1').subscribe( {
+        next: value => this.historicQrCode = value,
+        error: error => console.log(error),
+        complete: () => qrcodeObject.unsubscribe(),
+
+      }
+    );
   }
 
-  qrcodeObject = () =>  this.serviceRequest.getQrCodeHistoric('1').subscribe( {
-  next: value => this.historicQrCode = value,
-  error: error => this.historicQrCode = error,
-  complete: () => this.qrcodeObject().unsubscribe(),
-
-}
-
-  )}
+ }
