@@ -12,10 +12,16 @@ export class QrCodeRequestService {
   constructor(private httpClient: HttpClient) {}
 
   private apiUrl = environment.apiUrl;
+  private apiEndpoint = '/coupon';
 
   getOne(id: string): Observable<QrCode>{
-    return this.httpClient.get<QrCode>(this.apiUrl + '/qr-code/' +  id);
+    return this.httpClient.get<QrCode>(`${this.apiUrl}${this.apiEndpoint}/${id}`);
   }
+
+  getAll(): Observable<QrCode[]> {
+    return this.httpClient.get<QrCode[]>(`${this.apiUrl}${this.apiEndpoint}`);
+  }
+
   getQrCodeHistoric(userId: string): Observable<QrCode[]>{
     // return of([{
     //   id: '1',
