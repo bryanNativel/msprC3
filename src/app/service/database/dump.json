@@ -1,0 +1,8 @@
+{
+  "structure": {
+    "tables": {
+      "Coupon": "([id] PRIMARY KEY, [description], [brand], [validUntil], [coupon]",
+      "History": "([idCoupon] FOREIGN KEY, [scannedBy], [scannedAt], [lastScanned]"
+    }
+  }
+}
