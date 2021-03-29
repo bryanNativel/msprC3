@@ -15,7 +15,7 @@ describe('AuthService', () => {
   });
 
   it('check if login work', () => {
-      const loginTest = {email: 'test', password: '0000' };
+      const loginTest = {email: 'test@test.fr', password: '0000' };
       service.login(loginTest);
       expect(service.loggedIn).toBe(true);
       expect(service.getToken()).not.toBeNull();

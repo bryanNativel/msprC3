@@ -27,5 +27,8 @@ export class DetailComponent implements OnInit {
       }
     }))
    this.qrCode$ = this.serviceRequest.getOne(this.route.snapshot.params.id);
+  this.qrCode$.subscribe(response =>{
+     console.log(response);
+   });
   }
 }
