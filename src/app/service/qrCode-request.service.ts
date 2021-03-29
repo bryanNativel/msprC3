@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {environment} from '../environements/environements.dev';
+import {environment} from "../../environments/environment";
 import {QrCode} from '../interface/qr-code';
 import {Observable, of} from 'rxjs';
 
