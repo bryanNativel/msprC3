@@ -20,9 +20,9 @@ describe('HistoricComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('check if variable containing array qrcode type', () => {
-    component.ngOnInit();
-    const result = component.historicQrCode;
-    expect(result).toEqual(Array<QrCode>());
-  });
+  // it('check if variable containing array qrcode type', () => {
+  //   component.ngOnInit();
+  //   const result = component.historicQrCode;
+  //   expect(result).toEqual(Array<QrCode>());
+  // });
 });

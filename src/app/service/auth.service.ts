@@ -14,6 +14,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class AuthService {
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private router: Router) {}
 
