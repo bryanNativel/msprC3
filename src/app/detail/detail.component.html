@@ -1,5 +1,5 @@
 <ion-content fullscreen class="ion-align-items-center,ion-justify-content-center">
-  <ion-card>
+  <ion-card *ngIf="(qrCode$ | async) as coupon; else couponNotFound">
     <ion-card-header>
       <ion-card-title> <ion-label color="primary">{{ (qrCode$|async).brand}}</ion-label></ion-card-title>
     </ion-card-header>
@@ -13,4 +13,8 @@
     </ion-card-content>
     <img src="{{ (qrCode$|async).coupon}}"/>
   </ion-card>
+  <ng-template #couponNotFound>
+      Impossible d'accéder au coupon
+  </ng-template>
+
 </ion-content>
