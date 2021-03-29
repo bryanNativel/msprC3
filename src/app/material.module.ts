@@ -3,10 +3,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 
 
+
 @NgModule({
   exports: [
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule
   ]
 })
 export class MaterialModule {}

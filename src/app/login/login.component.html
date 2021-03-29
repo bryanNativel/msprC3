@@ -1,23 +1,23 @@
 <ion-content class="ion-padding">
   <ion-title class="text-center">Connexion</ion-title>
   <ion-row class='ion-text-center'>
-        <form [formGroup]="form">
-          <div class="ion-padding">
-            <mat-form-field class="">
-              <mat-label>email</mat-label>
-              <input matInput value="Sushi" name="email" formControlName="email">
-            </mat-form-field>
+    <form [formGroup]="form">
+      <div class="ion-padding">
+        <mat-form-field class="">
+          <mat-label>email</mat-label>
+          <input matInput value="Sushi" name="email" formControlName="email">
+        </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-              <mat-label>Password</mat-label>
-              <input matInput name="password" formControlName="password" type="password">
-            </mat-form-field>
-          </div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input matInput name="password" formControlName="password" type="password">
+        </mat-form-field>
+      </div>
 
-          <div class="row ion-margin-bottom">
-            <ion-button class="ion-padding" mat-raised-button color="primary" (click)="login()">Connexion</ion-button>
-          </div>
-          <ion-text class="ion-padding" mat-raised-button color="primary">S'inscrire</ion-text>
-        </form>
+      <div class="row ion-margin-bottom">
+        <ion-button class="ion-padding" mat-raised-button color="primary" (click)="login()">Connexion</ion-button>
+      </div>
+      <ion-text class="ion-padding" mat-raised-button color="primary">S'inscrire</ion-text>
+    </form>
   </ion-row>
 </ion-content>
