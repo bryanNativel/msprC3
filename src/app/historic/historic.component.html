@@ -1,12 +1,13 @@
+<app-nav-bar></app-nav-bar>
 <ion-content>
-  <ion-item *ngFor="let qrCode of historicQrCode">
+  <ion-card>
+    <ion-title class="ion-margin ion-text-center ion-fixed">Historique</ion-title>
+  </ion-card>
+  <ion-item class="ion-padding" *ngFor="let qrCode of historicQrCode">
     <ion-router-link href='detail/+{{qrCode.brand}}'>
-    <ion-avatar class="ion-" slot="start">
-      <img src="" alt="code barre">
-    </ion-avatar>
     <ion-label>
       <h2>{{qrCode.brand}}</h2>
-      <h3>{{qrCode.validUntil}}</h3>
+      <p> Date: {{qrCode.validUntil | date}}</p>
       <p>{{qrCode.description}}</p>
     </ion-label>
     </ion-router-link>

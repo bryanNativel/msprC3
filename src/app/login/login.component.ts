@@ -3,6 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
 import {User} from '../interface/user';
+import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +14,11 @@ import {User} from '../interface/user';
 export class LoginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb:FormBuilder,
+  constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private alertController: AlertController,
+              private loadingController: LoadingController) {
 
     this.form = this.fb.group({
       email: ['',Validators.required],
@@ -23,6 +27,28 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention',
+      subHeader: 'Erreur de connexion',
+      message: 'Le mot de passe ou l\'email sont incorrect ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: '',
+      message: 'Connexion...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+  }
 
   login() {
     const val = this.form.value
@@ -42,7 +68,5 @@ export class LoginComponent implements OnInit {
         },
       )
     }
-
-
   }
 }

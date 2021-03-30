@@ -6,17 +6,17 @@ import {RegisterComponent} from './register/register.component';
 import {AuthGuardService} from './_helpers/auth-guard.service';
 import {DetailComponent} from './detail/detail.component';
 import {HistoricComponent} from './historic/historic.component';
-
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
-    path: 'home', component: HomeComponent, canActivate: [AuthGuardService]
+    path: 'home', component: HomeComponent
   },
   {
-    path: 'detail/:id', component: DetailComponent, canActivate: [AuthGuardService]
+    path: 'detail/:id', component: DetailComponent
   },
   {
     path: 'login', component: LoginComponent
@@ -25,7 +25,10 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'historic', component: HistoricComponent
+    path: 'historic', component: HistoricComponent , canActivate: [AuthGuardService]
+  },
+  {
+    path: '404', component: PageNotFoundComponent,
   }
 ];
 

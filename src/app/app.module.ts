@@ -14,18 +14,19 @@ import {DetailComponent} from './detail/detail.component';
 import {HistoricComponent} from './historic/historic.component';
 import {LoginComponent} from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MaterialModule} from './material.module';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent, NavBarComponent, HistoricComponent],
+  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent, NavBarComponent, HistoricComponent, PageNotFoundComponent],
   entryComponents: [],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner, {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptorService,
     multi: true
   }],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule, MaterialModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
