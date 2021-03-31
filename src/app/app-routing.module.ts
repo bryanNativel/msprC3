@@ -10,16 +10,16 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: '404', pathMatch: 'full'
+  },
+  // {
+  //   path: '**', redirectTo: '404'
+  // },
+  {
+    path: 'home', component: HomeComponent , canActivate: [AuthGuardService]
   },
   {
-    path: '**', redirectTo: '404'
-  },
-  {
-    path: 'home', component: HomeComponent
-  },
-  {
-    path: 'detail/:id', component: DetailComponent
+    path: 'detail/:id', component: DetailComponent, canActivate: [AuthGuardService]
   },
   {
     path: 'login', component: LoginComponent
@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'historic', component: HistoricComponent
+    path: 'historic', component: HistoricComponent, canActivate: [AuthGuardService]
   },
   {
     path: '404', component: PageNotFoundComponent,
