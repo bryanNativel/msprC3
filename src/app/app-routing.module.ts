@@ -12,9 +12,6 @@ const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'
   },
-  // {
-  //   path: '**', redirectTo: '404'
-  // },
   {
     path: 'home', component: HomeComponent , canActivate: [AuthGuardService]
   },
@@ -32,7 +29,10 @@ const routes: Routes = [
   },
   {
     path: '404', component: PageNotFoundComponent,
-  }
+  },
+  {
+    path: '**', redirectTo: '404'
+  },
 ];
 
 @NgModule({
