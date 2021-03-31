@@ -10,7 +10,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '404', pathMatch: 'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   // {
   //   path: '**', redirectTo: '404'
