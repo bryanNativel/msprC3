@@ -1,14 +1,14 @@
 <app-nav-bar></app-nav-bar>
-<ion-content>
+<ion-content class="padding" color="primary">
   <ion-card>
     <ion-title class="ion-margin ion-text-center ion-fixed">Historique</ion-title>
   </ion-card>
-  <ion-item class="ion-padding" *ngFor="let qrCode of historicQrCode">
-    <ion-router-link href='detail/+{{qrCode.brand}}'>
+  <ion-item class="ion-padding" *ngFor="let coupon of historicQrCode">
+    <ion-router-link href='detail/+{{coupon.brand}}'>
     <ion-label>
-      <h2>{{qrCode.brand}}</h2>
-      <p> Date: {{qrCode.validUntil | date}}</p>
-      <p>{{qrCode.description}}</p>
+      <h2>{{coupon.brand}}</h2>
+      <p> Date: {{coupon.validUntil | date}}</p>
+      <p>{{coupon.description}}</p>
     </ion-label>
     </ion-router-link>
   </ion-item>

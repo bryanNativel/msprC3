@@ -13,6 +13,9 @@ const routes: Routes = [
     path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
+    path: '**', redirectTo: '404'
+  },
+  {
     path: 'home', component: HomeComponent
   },
   {
@@ -25,7 +28,7 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'historic', component: HistoricComponent , canActivate: [AuthGuardService]
+    path: 'historic', component: HistoricComponent
   },
   {
     path: '404', component: PageNotFoundComponent,

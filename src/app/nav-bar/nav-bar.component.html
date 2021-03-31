@@ -6,7 +6,7 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <div *ngIf="checkLogin;else elseBlock">
+      <div *ngIf="checkLogin; else elseBlock">
         <ion-item><ion-router-link color="primary" href="home">Scan</ion-router-link></ion-item>
         <ion-item><ion-router-link color="primary" href="historic">Historique</ion-router-link></ion-item>
         <ion-item><ion-router-link color="primary" (clic)="logout()">Deconnexion</ion-router-link></ion-item>
