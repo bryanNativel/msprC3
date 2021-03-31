@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuController} from '@ionic/angular';
 import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
+import {AuthService} from '../service/auth.service';
 
 
 @Component({
@@ -10,10 +11,11 @@ import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private menu: MenuController, private route: ActivatedRoute, private router: Router) {
+  constructor(private menu: MenuController, private route: ActivatedRoute, private router: Router, private serviceAuth: AuthService) {
 
   }
   pageName: string;
+  checkLogin: boolean;
 
   ngOnInit() {
     this.router.events.subscribe((data) => {
@@ -21,6 +23,11 @@ export class NavBarComponent implements OnInit {
         this.pageName = data.state.root.firstChild.data.title;
       }
     });
+    this.checkLogin = this.serviceAuth.loggedIn;
+  }
+
+  logout() {
+    this.logout();
   }
 
   openMenu() {

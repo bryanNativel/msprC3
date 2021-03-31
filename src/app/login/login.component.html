@@ -1,10 +1,33 @@
-<ion-content class="ion-padding">
-  <form [formGroup]="form">
-      <ion-label>Email:</ion-label>
-      <ion-input name="email" formControlName="email"></ion-input>
-      <ion-label>Password:</ion-label>
-      <ion-input name="password" formControlName="password"
-             type="password"></ion-input>
-      <ion-button class="button button-primary" (click)="login()">Connexion</ion-button>
-  </form>
+<ion-content class="ion-padding" color="primary">
+    <form [formGroup]="form">
+      <ion-grid>
+        <ion-row color="primary"  class="ion-justify-content-center ion-align-items-center">
+          <ion-col  class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+            <ion-title class="ion-text-center ion-padding">Connexion</ion-title>
+            <div class="ion-padding">
+              <ion-item class="roundedInput">
+
+              <ion-input name="email" formControlName="email" placeholder="Email"></ion-input>
+              </ion-item>
+              <ion-item class="roundedInput">
+
+                <ion-input name="password" formControlName="password" placeholder="Mot de passe"></ion-input>
+              </ion-item>
+            </div>
+              <div class="ion-padding">
+                <ion-row class="ion-text-center">
+                  <ion-col>
+                    <ion-button size="large"  mat-raised-button color="light" (click)="login()">Connexion</ion-button>
+                  </ion-col>
+                </ion-row>
+              </div>
+              <ion-row class="ion-text-center">
+                <ion-col>
+                  <ion-router-link color="light" href="register"><ion-text class="large" mat-raised-button color="light">Pas de compte ? S'inscrire</ion-text></ion-router-link>
+                </ion-col>
+              </ion-row>
+          </ion-col>
+          </ion-row>
+      </ion-grid>
+    </form>
 </ion-content>
