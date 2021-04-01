@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../service/auth.service';
 import {Router} from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-register',
@@ -10,25 +11,69 @@ import {Router} from '@angular/router';
 })
 export class UserRegisterComponent implements OnInit {
   formRegister: FormGroup;
-  constructor(private fb: FormBuilder , private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder , private authService: AuthService, private router: Router, public toastController: ToastController) {
 
     this.formRegister = this.fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+    ])),
       password: ['', Validators.required]
     });
   }
 
   ngOnInit() {}
 
+  async presentToastWithOptions(errorMessage) {
+    const toast = await this.toastController.create({
+      header: 'Message :',
+      color: 'danger',
+      message: errorMessage,
+      position: 'top',
+      buttons: [
+        {
+          side: 'start',
+          icon: 'warning',
+          text: 'Erreur',
+          handler: () => {
+            //console.log('Favorite clicked');
+          }
+        }, {
+          text: 'fermer',
+          role: 'cancel',
+          handler: () => {
+            // console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
+  }
+
   register(){
 
    const value =  this.formRegister.value;
-   console.log(value);
-   if (value.email && value.password && value.name){
-     console.log('yes');
-     this.authService.register(value);
+   if (this.formRegister.valid){
+     this.authService.register(value).subscribe(_ => {
+       this.router.navigate(['login']);
+     }, err => {
+       this.presentToastWithOptions(err.message || "une erreur est survenu");
+     });
     }
+  }
+
+  /**
+   * Check if form input is required
+   * @param formInput Form control
+   */
+  formInputIsRequired(formInput: string) {
+    if (this.formRegister.controls[formInput]) {
+      if (this.formRegister.controls[formInput].hasError('required')) {
+        return true;
+      }
+    }
+    return false;
   }
 
 

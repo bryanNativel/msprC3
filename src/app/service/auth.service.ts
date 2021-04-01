@@ -26,8 +26,7 @@ export class AuthService {
   }
 
   register(user: User) {
-    return this.http.post<{ access_token: string }>('url', user).pipe(tap(res => {
-      this.router.navigate(['login']);
+    return this.http.post<{ access_token: string }>('', user).pipe(tap(res => {
     }), catchError(this.handleError));
   }
 

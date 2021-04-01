@@ -6,19 +6,22 @@
           <ion-title class="ion-text-center ion-padding">Créer un compte</ion-title>
           <div class="ion-padding">
             <ion-item>
-              <ion-input type="text"  formControlName="name" placeholder="Nom"></ion-input>
+              <span *ngIf="formInputIsRequired('name')" class="required">&#42;</span>
+              <ion-input type="text"  formControlName="name" placeholder="Nom" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
+              <span *ngIf="formInputIsRequired('email')" class="required">&#42;</span>
+              <ion-input type="email" formControlName="email" placeholder="Email" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="password"  formControlName="password" placeholder="Mot de passe"></ion-input>
+              <span *ngIf="formInputIsRequired('password')" class="required">&#42;</span>
+              <ion-input type="password"  formControlName="password" placeholder="Mot de passe" required></ion-input>
             </ion-item>
           </div>
           <div class="ion-padding">
             <ion-row class="ion-text-center">
               <ion-col>
-                <ion-button size="large" type="submit"  mat-raised-button color="light" (click)="register()">Valider</ion-button>
+                <ion-button size="large" [disabled]="!formRegister.valid"  mat-raised-button color="light" (click)="register()">Valider</ion-button>
               </ion-col>
             </ion-row>
           </div>
