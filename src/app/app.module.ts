@@ -17,12 +17,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {UserRegisterComponent} from './user-register/user-register.component';
 
+import {SQLite} from "@ionic-native/sqlite/ngx";
+import {SQLitePorter} from "@ionic-native/sqlite-porter/ngx";
 
 
 @NgModule({
   declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent, NavBarComponent, HistoricComponent, PageNotFoundComponent, UserRegisterComponent],
   entryComponents: [],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner, {
+  providers: [SQLite, SQLitePorter,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner, {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptorService,
     multi: true
