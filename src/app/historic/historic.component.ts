@@ -11,21 +11,16 @@ import {Observable, of} from 'rxjs';
 export class HistoricComponent implements OnInit {
 
   constructor(private serviceRequest: QrCodeRequestService) {}
-  // public historicQrCode: QrCode[];
-
-  public historicQrCode: QrCode[] = [{brand: 'IKEA', description: '30% de réduction sur des chaises de bureau',
-    coupon: 'https://www.creerentreprise.fr/wp-content/uploads/2016/07/code-barre.png', id: '1', validUntil: new Date()}, {brand: 'FNAC', description: '25% de réduction sur des ordinateurs',
-    coupon: 'https://www.creerentreprise.fr/wp-content/uploads/2016/07/code-barre.png', id: '2', validUntil: new Date()},{brand: 'MICROMANIA', description: '5% de réduction sur des PS5',
-    coupon: 'https://www.creerentreprise.fr/wp-content/uploads/2016/07/code-barre.png', id: '3', validUntil: new Date()},{brand: 'SPORT 2000', description: '70% de réduction sur des baskettes NIKE',
-    coupon: 'https://www.creerentreprise.fr/wp-content/uploads/2016/07/code-barre.png', id: '4', validUntil: new Date()}];
+  public historicQrCode: QrCode[];
   ngOnInit() {
-   //
-   //  const qrcodeObject =  this.serviceRequest.getQrCodeHistoric('1').subscribe( {
-   //    next: value => console.log(this.historicQrCode = value),
-   //    error: error => console.error(error),
-   //    complete: () => qrcodeObject.unsubscribe(),
-   // });
+
+    const qrcodeObject =  this.serviceRequest.getQrCodeHistoric('1').subscribe( {
+        next: value => this.historicQrCode = value,
+        error: error => console.log(error),
+        complete: () => qrcodeObject.unsubscribe(),
+
+      }
+    );
   }
 
-}
-
+ }

@@ -9,7 +9,7 @@
       <div *ngIf="checkLogin; else elseBlock">
         <ion-item><ion-router-link color="primary" href="home">Scan</ion-router-link></ion-item>
         <ion-item><ion-router-link color="primary" href="historic">Historique</ion-router-link></ion-item>
-        <ion-item><ion-router-link color="primary" (clic)="logout()">Deconnexion</ion-router-link></ion-item>
+        <ion-item><ion-router-link color="primary" (click)="logout()">Deconnexion</ion-router-link></ion-item>
       </div>
       <ng-template #elseBlock>
         <ion-item><ion-router-link color="primary" href="login">Connexion</ion-router-link></ion-item>

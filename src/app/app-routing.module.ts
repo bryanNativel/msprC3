@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'historic', component: HistoricComponent, canActivate: [AuthGuardService]
   },
   {
-    path: '404', component: PageNotFoundComponent,
+    path: '404', component: PageNotFoundComponent
   },
   {
     path: '**', redirectTo: '404'

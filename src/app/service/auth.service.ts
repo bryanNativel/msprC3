@@ -1,33 +1,43 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {catchError, map, tap} from 'rxjs/operators';
-import {Router} from '@angular/router';
-import {User} from '../interface/user';
-import {Observable, throwError} from 'rxjs';
-
+import { Injectable } from '@angular/core';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { User } from '../interface/user';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
+  private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private router: Router) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   getToken(): string {
     return localStorage.getItem('access_token');
   }
 
   login(user: User) {
-    return this.http.post<{ access_token: string }>('http://localhost:3000/auth/login', user).pipe(tap(res => {
-      localStorage.setItem('access_token', res.access_token);
-    }), catchError(this.handleError));
+    return this.http
+      .post<{ access_token: string }>('http://localhost:3000/auth/login', user)
+      .pipe(
+        tap((res) => {
+          localStorage.setItem('access_token', res.access_token);
+        }),
+        catchError(this.handleError)
+      );
   }
 
   register(user: User) {
-    return this.http.post<{ access_token: string }>('', user).pipe(tap(res => {
-    }), catchError(this.handleError));
+    return this.http.post<{ access_token: string }>('', user).pipe(
+      tap((res) => {}),
+      catchError(this.handleError)
+    );
   }
 
   logout() {
@@ -41,14 +51,14 @@ export class AuthService {
     return localStorage.getItem('access_token') !== null;
   }
   // GetProfilUser
-  getUserProfile(id): Observable<any> {
-    return this.http.get('url/id', { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
-  }
+  // getUserProfile(id): Observable<any> {
+  //   return this.http.get('url/id', { headers: this.headers }).pipe(
+  //     map((res: Response) => {
+  //       return res || {};
+  //     }),
+  //     catchError(this.handleError)
+  //   );
+  // }
   // Error
   handleError(error: HttpErrorResponse) {
     let msg = '';
@@ -61,6 +71,4 @@ export class AuthService {
     }
     return throwError(msg);
   }
-
-
 }
