@@ -15,11 +15,12 @@ import {HistoricComponent} from './historic/historic.component';
 import {LoginComponent} from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {UserRegisterComponent} from './user-register/user-register.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent, NavBarComponent, HistoricComponent, PageNotFoundComponent],
+  declarations: [AppComponent, DetailComponent, HomeComponent, LoginComponent, NavBarComponent, HistoricComponent, PageNotFoundComponent, UserRegisterComponent],
   entryComponents: [],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, QRScanner, {
     provide: HTTP_INTERCEPTORS,
