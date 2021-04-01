@@ -24,10 +24,11 @@ export class AuthService {
 
   login(user: User) {
     return this.http
-      .post<{ access_token: string }>('http://localhost:3000/auth/login', user)
+      .post<{ access_token: string; user_id: number }>('url', user)
       .pipe(
         tap((res) => {
           localStorage.setItem('access_token', res.access_token);
+          localStorage.setItem('user_id', `${res.user_id}`);
         }),
         catchError(this.handleError)
       );
@@ -41,9 +42,21 @@ export class AuthService {
   }
 
   logout() {
-    const checkRemouveToker = localStorage.removeItem('access_token');
-    if (checkRemouveToker == null) {
+    try {
+      this.cleanLocalStorage();
+    } finally {
       this.router.navigate(['login']);
+    }
+  }
+
+  cleanLocalStorage() {
+    try {
+      localStorage.removeItem('user_id');
+      localStorage.removeItem('access_token');
+    } catch (e) {
+      throw new Error(
+        `Error while trying to clear local storage. message : ${e.message}`
+      );
     }
   }
 
@@ -70,5 +83,9 @@ export class AuthService {
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(msg);
+  }
+
+  getUserId(): number {
+    return +localStorage.getItem('user_id');
   }
 }
