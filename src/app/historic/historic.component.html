@@ -3,12 +3,12 @@
   <ion-card>
     <ion-title class="ion-margin ion-text-center ion-fixed">Historique</ion-title>
   </ion-card>
-  <ion-item class="ion-padding" *ngFor="let coupon of historicQrCode">
-    <ion-router-link href='detail/+{{coupon.brand}}'>
+  <ion-item class="ion-padding" *ngFor="let coupon of historicQrCode$ | async">
+    <ion-router-link href='detail/+{{coupon.couponId}}'>
     <ion-label>
-      <h2>{{coupon.brand}}</h2>
-      <p> Date: {{coupon.validUntil | date}}</p>
-      <p>{{coupon.description}}</p>
+      <h2>{{coupon.couponId}}</h2>
+      <p> Date: {{coupon.scannedAt | date}}</p>
+      <p> Dernier scan : {{coupon.lastScanned | date}}</p>
     </ion-label>
     </ion-router-link>
   </ion-item>
