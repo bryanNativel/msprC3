@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
             // console.log('Favorite clicked');
           }
         }, {
-          text: 'fermer',
+          text: 'Fermer',
           role: 'cancel',
           handler: () => {
             // console.log('Cancel clicked');
