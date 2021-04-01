@@ -30,19 +30,13 @@ export class HomeComponent implements OnInit {
               scanSub.unsubscribe();
               this.showCamera = false;
               const idConvert = parseInt(id, null);
-              if (typeof(idConvert) === 'number'){
-                this.serviceQrCode.getOne(id).subscribe(success => {
+              this.serviceQrCode.getOne(id).subscribe(success => {
                     this.router.navigate(['/detail', idConvert]);
                   },
                   err => {
                     this.closeCamera();
                     this.presentToastWithOptions(err || 'Une erreur est survenue');
                   });
-
-              }else{
-                this.closeCamera();
-                this.presentToastWithOptions('QrCode invalide');
-              }
               this.router.navigate(['/detail', id]);
             });
           } else if (status.denied) {
