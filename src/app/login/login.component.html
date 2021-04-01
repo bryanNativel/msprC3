@@ -6,18 +6,18 @@
             <ion-title class="ion-text-center ion-padding">Connexion</ion-title>
             <div class="ion-padding">
               <ion-item class="roundedInput">
-
-              <ion-input name="email" formControlName="email" placeholder="Email"></ion-input>
+                <span *ngIf="formInputIsRequired('email')" class="required">&#42;</span>
+              <ion-input type="email" name="email" formControlName="email" placeholder="Email" required></ion-input>
               </ion-item>
               <ion-item class="roundedInput">
-
-                <ion-input name="password" formControlName="password" placeholder="Mot de passe"></ion-input>
+                <span *ngIf="formInputIsRequired('password')" class="required">&#42;</span>
+                <ion-input type="password" name="password" formControlName="password" placeholder="Mot de passe" required></ion-input>
               </ion-item>
             </div>
               <div class="ion-padding">
                 <ion-row class="ion-text-center">
                   <ion-col>
-                    <ion-button size="large"  mat-raised-button color="light" (click)="login()">Connexion</ion-button>
+                    <ion-button size="large" [disabled]="!form.valid"  mat-raised-button color="light" (click)="login()">Connexion</ion-button>
                   </ion-col>
                 </ion-row>
               </div>
