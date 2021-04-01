@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
 import {Router} from '@angular/router';
+import {ToastController} from '@ionic/angular';
+import {QrCodeRequestService} from '../service/qrCode-request.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private qrScanner: QRScanner , private router: Router) {
+  constructor(private qrScanner: QRScanner , private router: Router, public toastController: ToastController, private serviceQrCode: QrCodeRequestService) {
   }
   showCamera = false;
 
@@ -23,18 +25,31 @@ export class HomeComponent implements OnInit {
         .then((status: QRScannerStatus) => {
           if (status.authorized) {
             this.showCamera = true;
-            const scanSub = this.qrScanner.scan().subscribe((text: string) => {
-              console.log('Scanned something', text);
-               // this.router.navigate(['/detail',{id: text}]);
+            const scanSub = this.qrScanner.scan().subscribe((id: string) => {
               this.qrScanner.hide();
               scanSub.unsubscribe();
               this.showCamera = false;
+              const idConvert = parseInt(id, null);
+              if (typeof(idConvert) === 'number'){
+                this.serviceQrCode.getOne(id).subscribe(success => {
+                    this.router.navigate(['/detail', idConvert]);
+                  },
+                  err => {
+                    this.closeCamera();
+                    this.presentToastWithOptions(err || 'Une erreur est survenue');
+                  });
+
+              }else{
+                this.closeCamera();
+                this.presentToastWithOptions('QrCode invalide');
+              }
+              this.router.navigate(['/detail', id]);
             });
-            this.qrScanner.show().then(r => console.log(r));
           } else if (status.denied) {
-            console.log("camera permission was permanently denied,you must use QRScanner.openSettings() method to guide the user to the settings page");
+            this.presentToastWithOptions('camera permission was permanently denied.');
+
           } else {
-            console.log("permission was denied, but not permanently. You can ask for permission again at a later time.");
+            this.presentToastWithOptions('l\'autorisation a été refusée, mais pas de façon permanente. Vous pouvez demander à nouveau l\'autorisation ultérieurement.');
           }
         })
         .catch((e: any) => console.log('Error is', e));
@@ -44,5 +59,30 @@ export class HomeComponent implements OnInit {
     this.showCamera = false;
     this.qrScanner.hide(); // hide camera preview
     this.qrScanner.destroy();
+  }
+  async presentToastWithOptions(errorMessage) {
+    const toast = await this.toastController.create({
+      header: 'Message :',
+      color: 'danger',
+      message: errorMessage,
+      position: 'top',
+      buttons: [
+        {
+          side: 'start',
+          icon: 'warning',
+          text: 'Erreur',
+          handler: () => {
+            // console.log('Favorite clicked');
+          }
+        }, {
+          text: 'fermer',
+          role: 'cancel',
+          handler: () => {
+            // console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
   }
 }

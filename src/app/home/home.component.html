@@ -1,17 +1,5 @@
 <app-nav-bar></app-nav-bar>
 <ion-content>
-  <ion-header>
-<!--    <ion-toolbar>-->
-<!--      <ion-title>-->
-<!--        Scan Qr code-->
-<!--      </ion-title>-->
-<!--      <ion-buttons slot="end">-->
-<!--        <ion-button *ngIf="showCamera" (click)="closeCamera()">-->
-<!--          <ion-icon name="close"></ion-icon>-->
-<!--        </ion-button>-->
-<!--      </ion-buttons>-->
-<!--    </ion-toolbar>-->
-  </ion-header>
   <div *ngIf = "!showCamera" >
     <ion-fab horizontal="center" vertical="center" slot="fixed">
       <ion-fab-button (click)="scanQrCode()" color="primary">
