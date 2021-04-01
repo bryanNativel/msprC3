@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit {
   }
 
   logout() {
-    this.logout();
+    this.serviceAuth.logout();
   }
 
   openMenu() {

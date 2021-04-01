@@ -17,13 +17,11 @@ export class QrCodeRequestService {
   getOne(id: string): Observable<QrCode>{
     return this.httpClient.get<QrCode>(`${this.apiUrl}${this.apiEndpoint}/${id}`);
   }
-
   getAll(): Observable<QrCode[]> {
     return this.httpClient.get<QrCode[]>(`${this.apiUrl}${this.apiEndpoint}`);
   }
-
   getQrCodeHistoric(userId: string): Observable<QrCode[]>{
-     return this.httpClient.get<QrCode[]>(this.apiUrl + '/historic/' +  userId);
+    return this.httpClient.get<QrCode[]>(this.apiUrl + '/historic/' +  userId);
   }
   createCoupon(coupon: QrCode): Observable<QrCode>{
     return this.httpClient.post<QrCode>(this.apiUrl + '/coupon', coupon);

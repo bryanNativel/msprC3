@@ -18,8 +18,8 @@ describe('QrCodeRequestService', () => {
     service = TestBed.inject(QrCodeRequestService);
   });
 
-  it('check if getAll qrCode work', () => {
-    service.createCoupon(coupon1).subscribe((result) => expect(result).toEqual(coupon1));
+  it('check if add et get  qrCode work', () => {
+    service.createCoupon(coupon1).subscribe((result) =>  expect(result).toEqual(coupon1));
     service.createCouponMultiple([coupon2, coupon3]).subscribe(
       (result) => expect(result).toContain(jasmine.arrayContaining([coupon2, coupon3])));
 
