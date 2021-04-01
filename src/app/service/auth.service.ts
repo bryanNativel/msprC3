@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   login(user: User) {
-    return this.http.post<{ access_token: string }>('url', user).pipe(tap(res => {
+    return this.http.post<{ access_token: string }>('http://localhost:3000/auth/login', user).pipe(tap(res => {
       localStorage.setItem('access_token', res.access_token);
     }), catchError(this.handleError));
   }

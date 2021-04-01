@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
-import {User} from '../interface/user';
-import { AlertController } from '@ionic/angular';
-import { LoadingController } from '@ionic/angular';
+import {ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -17,56 +15,69 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private alertController: AlertController,
-              private loadingController: LoadingController) {
+              public toastController: ToastController) {
 
     this.form = this.fb.group({
-      email: ['',Validators.required],
-      password: ['',Validators.required]
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: ['', Validators.required]
     });
   }
 
   ngOnInit() {}
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Attention',
-      subHeader: 'Erreur de connexion',
-      message: 'Le mot de passe ou l\'email sont incorrect ',
-      buttons: ['OK']
-    });
 
-    await alert.present();
-  }
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: '',
-      message: 'Connexion...',
-      duration: 2000
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-  }
 
   login() {
-    const val = this.form.value
-
-    if(val.email && val.password){
-
-      this.authService.login(val).subscribe(()=>{
-         console.log("connexion work")
-          // this.router.navigateByUrl('home');
-        console.log(this.authService.getToken())
-        this.authService.logout();
-          console.log(this.authService.getToken())
-
+    if (this.form.valid){
+      this.authService.login(this.form.value).subscribe(() => {
+          this.router.navigateByUrl('home');
         },
-        (error)=>{
-          console.log("error connexion");
+        (error) => {
+          this.presentToastWithOptions(error || 'une erreur est survenue');
         },
-      )
+      );
     }
+  }
+
+
+  /**
+   * Check if form input is required
+   * @param formInput Form control
+   */
+  formInputIsRequired(formInput: string) {
+    if (this.form.controls[formInput]) {
+      if (this.form.controls[formInput].hasError('required')) {
+        return true;
+      }
+    }
+    return false;
+  }
+  async presentToastWithOptions(errorMessage) {
+    const toast = await this.toastController.create({
+      header: 'Message :',
+      color: 'danger',
+      message: errorMessage,
+      position: 'top',
+      buttons: [
+        {
+          side: 'start',
+          icon: 'warning',
+          text: 'Erreur',
+          handler: () => {
+            //console.log('Favorite clicked');
+          }
+        }, {
+          text: 'fermer',
+          role: 'cancel',
+          handler: () => {
+            // console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
   }
 }
