@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('home');
         },
         (error) => {
-          this.presentToastWithOptions(error || 'une erreur est survenue');
+          this.presentToastWithOptions(error.substring(0,20) + '...' || 'Impossible de communiquer avec le serveur.');
         }
       );
     }
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   }
   async presentToastWithOptions(errorMessage) {
     const toast = await this.toastController.create({
-      header: 'Message :',
+      header: 'Une erreur est survenue',
       color: 'danger',
       message: errorMessage,
       position: 'top',

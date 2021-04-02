@@ -53,9 +53,9 @@ export class UserRegisterComponent implements OnInit {
 
   register(){
 
-   const value =  this.formRegister.value;
+
    if (this.formRegister.valid){
-     this.authService.register(value).subscribe(_ => {
+     this.authService.register(this.formRegister.value).subscribe(_ => {
        this.router.navigate(['login']);
      }, err => {
        this.presentToastWithOptions(err.message || "une erreur est survenu");

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { QrCodeRequestService } from '../service/qrCode-request.service';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,14 @@ export class HomeComponent implements OnInit {
     private qrScanner: QRScanner,
     private router: Router,
     public toastController: ToastController,
-    private serviceQrCode: QrCodeRequestService
+    private serviceQrCode: QrCodeRequestService,
+    private zone: NgZone
   ) {}
   showCamera = false;
 
   ngOnInit() {
-    this.scanQrCode();
   }
+
   public scanQrCode(): void {
     this.qrScanner
       .prepare()
@@ -29,20 +31,22 @@ export class HomeComponent implements OnInit {
         if (status.authorized) {
           this.showCamera = true;
           const scanSub = this.qrScanner.scan().subscribe((id: string) => {
-            this.qrScanner.hide();
             scanSub.unsubscribe();
-            this.showCamera = false;
+            this.closeCamera()
             const idConvert = parseInt(id, null);
             this.serviceQrCode.getOne(id).subscribe(
               (success) => {
-                this.router.navigate(['/detail', idConvert]);
               },
               (err) => {
-                this.closeCamera();
-                this.presentToastWithOptions(err || 'Une erreur est survenue');
+                console.log(err.error)
+                const errorMessage = (err as HttpErrorResponse).error !== undefined ? `${err.error.statusCode} ${err.error.error}` : 'Un problème est survenue avec le serveur.'
+                this.presentToastWithOptions(errorMessage);
+              },
+              () => {
+                this.zone.run(() => this.router.navigate(['/detail', idConvert]))
+
               }
             );
-            this.router.navigate(['/detail', id]);
           });
         } else if (status.denied) {
           this.presentToastWithOptions(

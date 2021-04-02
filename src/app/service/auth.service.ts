@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from '../interface/user';
 import { Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,8 @@ import { Observable, throwError } from 'rxjs';
 export class AuthService {
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   private apiUrl = environment.apiUrl;
+  private apiLoginEndpoint = 'auth/login';
+  private apiRegisterEndpoitn = 'auth/register';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -22,23 +25,35 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
-  login(user: User) {
+  authenticationHeader(token: string) {
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
+  login(user: { name: string; email: string; password: string }) {
     return this.http
-      .post<{ access_token: string; user_id: number }>('url', user)
+      .post<{ access_token: string }>(
+        `${this.apiUrl}/${this.apiLoginEndpoint}`,
+        { username: user.email, password: user.password }
+      )
       .pipe(
         tap((res) => {
           localStorage.setItem('access_token', res.access_token);
-          localStorage.setItem('user_id', `${res.user_id}`);
+          //localStorage.setItem('user_id', `${res.user_id}`);
         }),
         catchError(this.handleError)
       );
   }
 
   register(user: User) {
-    return this.http.post<{ access_token: string }>('', user).pipe(
-      tap((res) => {}),
-      catchError(this.handleError)
-    );
+    return this.http
+      .post<{ access_token: string }>(
+        `${this.apiUrl}/${this.apiRegisterEndpoitn}`,
+        user
+      )
+      .pipe(
+        tap((res) => {}),
+        catchError(this.handleError)
+      );
   }
 
   logout() {
@@ -51,7 +66,7 @@ export class AuthService {
 
   cleanLocalStorage() {
     try {
-      localStorage.removeItem('user_id');
+      //localStorage.removeItem('user_id');
       localStorage.removeItem('access_token');
     } catch (e) {
       throw new Error(
@@ -63,16 +78,7 @@ export class AuthService {
   get loggedIn(): boolean {
     return localStorage.getItem('access_token') !== null;
   }
-  // GetProfilUser
-  // getUserProfile(id): Observable<any> {
-  //   return this.http.get('url/id', { headers: this.headers }).pipe(
-  //     map((res: Response) => {
-  //       return res || {};
-  //     }),
-  //     catchError(this.handleError)
-  //   );
-  // }
-  // Error
+
   handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
