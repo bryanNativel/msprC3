@@ -14,7 +14,7 @@ export class UserRegisterComponent implements OnInit {
   constructor(private fb: FormBuilder , private authService: AuthService, private router: Router, public toastController: ToastController) {
 
     this.formRegister = this.fb.group({
-      name: ['', Validators.required],
+      username: ['', Validators.required],
       email: new FormControl('', Validators.compose([
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -35,7 +35,7 @@ export class UserRegisterComponent implements OnInit {
         {
           side: 'start',
           icon: 'warning',
-          text: 'Erreur',
+          text: '',
           handler: () => {
             //console.log('Favorite clicked');
           }
