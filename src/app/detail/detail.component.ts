@@ -21,7 +21,6 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     const userId = this.authService.getUserId() || 1
     const id = this.route.snapshot.params.id;
-    this.saveInHistory(id, userId)
     this.qrCode$ = this.serviceRequest.getOne(id).pipe(catchError((err: HttpErrorResponse) => {
       if(err.status == 404) {
         console.log("Coupon with id "+ id +" Not found")
@@ -33,9 +32,4 @@ export class DetailComponent implements OnInit {
 
   }
 
- saveInHistory(couponId: number, userId: number = 1) {
-    // TODO
-   console.log('save in history : ', couponId,', ', userId)
-   return this.historicService.create({couponId, scannedBy: userId})
- }
 }

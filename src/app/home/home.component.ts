@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { QrCodeRequestService } from '../service/qrCode-request.service';
 import {HttpErrorResponse} from "@angular/common/http";
+import {HistoricService} from "../service/database/historic.service";
+import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -17,9 +19,13 @@ export class HomeComponent implements OnInit {
     private router: Router,
     public toastController: ToastController,
     private serviceQrCode: QrCodeRequestService,
+    private historicService: HistoricService,
+    private authService: AuthService,
     private zone: NgZone
   ) {}
   showCamera = false;
+
+  public userId: number = this.authService.getUserId() || 1;
 
   ngOnInit() {
   }
@@ -35,7 +41,8 @@ export class HomeComponent implements OnInit {
             this.closeCamera()
             const idConvert = parseInt(id, null);
             this.serviceQrCode.getOne(id).subscribe(
-              (success) => {
+              (coupon) => {
+                this.historicService.create({couponId: +coupon.id, scannedBy: this.userId})
               },
               (err) => {
                 console.log(err.error)
