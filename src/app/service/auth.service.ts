@@ -80,13 +80,13 @@ export class AuthService {
   }
 
   handleError(error: HttpErrorResponse) {
-    let msg = '';
+    let msg = {};
     if (error.error instanceof ErrorEvent) {
       // client-side error
-      msg = error.error.message;
+      msg = { message : error.error.message};
     } else {
       // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      msg = { status : error.status, message : error.message};
     }
     return throwError(msg);
   }

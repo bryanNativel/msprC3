@@ -44,7 +44,13 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('home');
         },
         (error) => {
-          this.presentToastWithOptions(error.substring(0,20) + '...' || 'Impossible de communiquer avec le serveur.');
+          console.log(error);
+          const status = '401';
+          if (error.status == status){
+            this.presentToastWithOptions('Mot de passe ou email incorrect');
+          }else{
+            this.presentToastWithOptions(error.message + '...' || 'Impossible de communiquer avec le serveur.');
+          }
         }
       );
     }
@@ -64,7 +70,7 @@ export class LoginComponent implements OnInit {
   }
   async presentToastWithOptions(errorMessage) {
     const toast = await this.toastController.create({
-      header: 'Une erreur est survenue',
+      header: '',
       color: 'danger',
       message: errorMessage,
       position: 'top',
@@ -72,7 +78,6 @@ export class LoginComponent implements OnInit {
         {
           side: 'start',
           icon: 'warning',
-          text: 'Erreur',
           handler: () => {
             //console.log('Favorite clicked');
           },
