@@ -39,6 +39,11 @@ export class SqlHelper{
     return `DELETE FROM ${tableName} ${condition}`
   }
 
+  create(tableName: string, columns) {
+    const valueStmt = [...new Array<string>(columns.length)].fill('?').join(',')
+    return`INSERT INTO ${tableName} (${columns.join(',')}) VALUES (${valueStmt})`
+  }
+
   where(condition: SqlCondition) {
     return `WHERE ${this.computeCondtion(condition)}`
   }

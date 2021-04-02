@@ -29,7 +29,7 @@ export class AuthService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  login(user: { name: string; email: string; password: string }) {
+  login(user: { email: string; password: string }) {
     return this.http
       .post<{ access_token: string }>(
         `${this.apiUrl}/${this.apiLoginEndpoint}`,

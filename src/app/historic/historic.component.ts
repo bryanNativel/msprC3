@@ -23,13 +23,4 @@ export class HistoricComponent implements OnInit {
     this.historicQrCode$ = this.userId ? this.historicDao.getAllForUser(this.userId) : this.historicDao.getAll()
   }
 
-    const qrcodeObject =  this.serviceRequest.getQrCodeHistoric('1').subscribe( {
-        next: value => this.historicQrCode = value,
-        error: error => console.log(error),
-        complete: () => qrcodeObject.unsubscribe(),
-
-      }
-    );
-  }
-
  }
