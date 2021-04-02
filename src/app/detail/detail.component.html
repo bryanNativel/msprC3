@@ -20,12 +20,23 @@
                 <img src="{{ coupon.coupon}}"/>
               </ion-col>
             </ion-row>
+            <ion-row class="ion-align-items-center"><ion-col size="12" class="ion-text-center">
+              <ion-router-link color="light" href="home"><ion-button>Retour</ion-button></ion-router-link>
+            </ion-col></ion-row>
+
+
           </ion-card>
           <ng-template #couponNotFound>
             <ion-card>
-              <ion-card-title> Coupon introuvable </ion-card-title>
-              <ion-content></ion-content>
-              Impossible d'accéder au coupon
+              <ion-card-header style="text-align: center">
+                <ion-card-title> Rien à afficher :( </ion-card-title>
+              </ion-card-header>
+              <ion-card-content style="text-align: center;">
+                <p></p>
+                <p>Veuillez réessayer dans quelques minutes ou essayer d'en scanner un autre</p>
+                <p></p>
+                <ion-router-link color="light" href="home"><ion-button>Retour</ion-button></ion-router-link>
+              </ion-card-content>
             </ion-card>
           </ng-template>
         </ion-col>
